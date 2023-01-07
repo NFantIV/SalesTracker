@@ -5,6 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesTracker.WebAPI", "SalesTracker.WebAPI\SalesTracker.WebAPI.csproj", "{8EB46972-8A87-43A7-951B-52436AB59519}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesTracker.Data", "SalesTracker.Data\SalesTracker.Data.csproj", "{8046A214-F51A-4726-AAE3-5FF0228B77C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesTracker.Models", "SalesTracker.Models\SalesTracker.Models.csproj", "{6834CBB2-54E3-4AD7-8620-E020B3933832}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesTracker.Services", "SalesTracker.Services\SalesTracker.Services.csproj", "{095DCEEB-132E-450C-BE08-81396EDBA679}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +24,17 @@ Global
 		{8EB46972-8A87-43A7-951B-52436AB59519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB46972-8A87-43A7-951B-52436AB59519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB46972-8A87-43A7-951B-52436AB59519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8046A214-F51A-4726-AAE3-5FF0228B77C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8046A214-F51A-4726-AAE3-5FF0228B77C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8046A214-F51A-4726-AAE3-5FF0228B77C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8046A214-F51A-4726-AAE3-5FF0228B77C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6834CBB2-54E3-4AD7-8620-E020B3933832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6834CBB2-54E3-4AD7-8620-E020B3933832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6834CBB2-54E3-4AD7-8620-E020B3933832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6834CBB2-54E3-4AD7-8620-E020B3933832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{095DCEEB-132E-450C-BE08-81396EDBA679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{095DCEEB-132E-450C-BE08-81396EDBA679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{095DCEEB-132E-450C-BE08-81396EDBA679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{095DCEEB-132E-450C-BE08-81396EDBA679}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
