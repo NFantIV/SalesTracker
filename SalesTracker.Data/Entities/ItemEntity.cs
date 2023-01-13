@@ -12,9 +12,13 @@ public class ItemEntity
         [Required]
         public decimal Cost { get; set; }
 
+        [Required]
+        public List<OrderEntity> Orders { get; set; } = new List<OrderEntity>();
+
         [ForeignKey(nameof (ProductType))]
 
         public int ProductTypeId { get; set; }
 
         public ProductTypeEntity ProductType { get; set; }
     }
+
