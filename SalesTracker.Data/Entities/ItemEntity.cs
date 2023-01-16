@@ -11,7 +11,7 @@ public class ItemEntity
         public string? Description { get; set; }
         [Required]
         public decimal Cost { get; set; }
-
+        
         [Required]
         public List<OrderEntity> Orders { get; set; } = new List<OrderEntity>();
 

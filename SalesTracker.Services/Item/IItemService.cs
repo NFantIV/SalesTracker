@@ -1,9 +1,9 @@
 
 public interface IItemService
 {
-    Task<bool> CreateItemAsync(ItemCreate itemCreate);
+    Task<bool> CreateItemAsync(ProductCreate itemCreate);
     Task<IEnumerable<ItemListItem>> GetAllItemsAsync();
-    Task<ItemDetails> GetItemByIdAsync(int itemId);
-    Task<bool> EditItemAsync(ItemEdit request);
+    Task<ProductDetails> GetItemByIdAsync(int itemId);
+    Task<bool> EditItemAsync(ProductEdit request);
     Task<bool> DeleteItemAsync(int itemId);
 }

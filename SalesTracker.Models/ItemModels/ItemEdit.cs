@@ -1,4 +1,4 @@
-public class ItemEdit
+public class ProductEdit
     {
         public int Id { get; set; }
         public string Name { get; set; }

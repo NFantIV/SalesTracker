@@ -17,7 +17,7 @@ namespace SalesTracker.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateItem([FromBody] ItemCreate request)
+        public async Task<IActionResult> CreateItem([FromBody] ProductCreate request)
         {
             if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -46,7 +46,7 @@ namespace SalesTracker.WebAPI.Controllers
         }
         
         [HttpPut]
-        public async Task<IActionResult> EditItemById([FromBody] ItemEdit request)
+        public async Task<IActionResult> EditItemById([FromBody] ProductEdit request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
