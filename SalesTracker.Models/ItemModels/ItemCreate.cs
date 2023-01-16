@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-public class ItemCreate
+public class ProductCreate
     {
         [Required]
         [MinLength(2, ErrorMessage = "{0} must be at least {1} Characters long.")]

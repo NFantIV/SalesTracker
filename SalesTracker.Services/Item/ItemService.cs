@@ -8,7 +8,7 @@ public class ItemService : IItemService
             _context = context;
         }
 
-        public async Task<bool> CreateItemAsync(ItemCreate model)
+        public async Task<bool> CreateItemAsync(ProductCreate model)
         {
             var entity = new ItemEntity
             {
@@ -34,7 +34,7 @@ public class ItemService : IItemService
             }).ToListAsync();
         }
 
-        public async Task<ItemDetails> GetItemByIdAsync(int itemId)
+        public async Task<ProductDetails> GetItemByIdAsync(int itemId)
         {
             ItemEntity item = await _context.Items.Include(i => i.ProductType).FirstOrDefaultAsync(i => i.Id == itemId);
             if (item is null)
@@ -42,7 +42,7 @@ public class ItemService : IItemService
                 return null;
             }
             // manuly mapping a GameEntity Object to a GameDetails Object
-            return new ItemDetails
+            return new ProductDetails
             {
                 Id = item.Id,
                 Name = item.Name,
@@ -56,7 +56,7 @@ public class ItemService : IItemService
             };
         }
 
-        public async Task<bool> EditItemAsync(ItemEdit request)
+        public async Task<bool> EditItemAsync(ProductEdit request)
         {
             var itemEntity = await _context.Items.FindAsync(request.Id);
             

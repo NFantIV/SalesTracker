@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SalesTracker.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230113212831_EntityChanges1")]
-    partial class EntityChanges1
+    [Migration("20230116202352_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
