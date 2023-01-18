@@ -3,7 +3,7 @@
  {
 
     public string location { get; set; }   
-    public List<int> ItemIds { get; set; } 
+    public List<int> ProductIds { get; set; } 
 
  }
 

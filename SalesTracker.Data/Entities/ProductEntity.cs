@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class ItemEntity
+public class ProductEntity
     {
         [Key]
         public int Id { get; set; }

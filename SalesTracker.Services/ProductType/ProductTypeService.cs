@@ -15,7 +15,7 @@ public class ProductTypeService : IProductTypeService
                 Name = model.Name
             };
 
-            _context.ProductType.Add(entity);
+            _context.ProductTypes.Add(entity);
             var numberOfChanges = await _context.SaveChangesAsync();
 
             return numberOfChanges == 1;
@@ -23,7 +23,7 @@ public class ProductTypeService : IProductTypeService
 
     public async Task<IEnumerable<ProductTypeListItem>> GetAllProductTypeAsync()
         {
-            return await _context.ProductType.Select(i => new ProductTypeListItem
+            return await _context.ProductTypes.Select(i => new ProductTypeListItem
             {
                 Id = i.Id,
                 Name = i.Name
@@ -32,7 +32,7 @@ public class ProductTypeService : IProductTypeService
 
         public async Task<ProductTypeDetails> GetProductTypeByIdAsync(int productTypeId)
         {
-            var product = await _context.ProductType.Include(p => p.Items).FirstOrDefaultAsync(p => p.Id == productTypeId);
+            var product = await _context.ProductTypes.Include(p => p.Products).FirstOrDefaultAsync(p => p.Id == productTypeId);
             if (product is null)
             {
                 return null;
@@ -42,7 +42,7 @@ public class ProductTypeService : IProductTypeService
             {
                 Id = product.Id,
                 Name = product.Name,
-                Items = product.Items.Select(i => new ItemListItem
+                Products = product.Products.Select(i => new ProductListItem
                 {
                     Id = i.Id,
                     Name = i.Name
@@ -52,7 +52,7 @@ public class ProductTypeService : IProductTypeService
 
         public async Task<bool> EditProductTypeAsync(ProductTypeEdit request)
         {
-            var productTypeEntity = await _context.ProductType.FindAsync(request.Id);
+            var productTypeEntity = await _context.ProductTypes.FindAsync(request.Id);
             
             if (productTypeEntity == null)
                 return false;
@@ -67,14 +67,14 @@ public class ProductTypeService : IProductTypeService
         public async Task<bool> DeleteProductTypeAsync(int productTypeId)
         {
             // Find the note by the given Id
-            var productTypeEntity = await _context.ProductType.FindAsync(productTypeId);
+            var productTypeEntity = await _context.ProductTypes.FindAsync(productTypeId);
 
             // Validate the note exists and is owned by the user
             if (productTypeEntity == null)
                 return false;
 
             // Remove the note from the DbContext and assert that the one change was saved
-            _context.ProductType.Remove(productTypeEntity);
+            _context.ProductTypes.Remove(productTypeEntity);
             return await _context.SaveChangesAsync() == 1;
         }
 }

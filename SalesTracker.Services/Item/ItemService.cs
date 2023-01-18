@@ -10,7 +10,7 @@ public class ItemService : IItemService
 
         public async Task<bool> CreateItemAsync(ProductCreate model)
         {
-            var entity = new ItemEntity
+            var entity = new ProductEntity
             {
                 Name = model.Name,
                 Description = model.Description,
@@ -19,15 +19,15 @@ public class ItemService : IItemService
                 
             };
             
-            _context.Items.Add(entity);
+            _context.Products.Add(entity);
             var numberOfChanges = await _context.SaveChangesAsync();
 
             return numberOfChanges == 1;
         }
 
-        public async Task<IEnumerable<ItemListItem>> GetAllItemsAsync()
+        public async Task<IEnumerable<ProductListItem>> GetAllItemsAsync()
         {
-            return await _context.Items.Select(i => new ItemListItem
+            return await _context.Products.Select(i => new ProductListItem
             {
                 Id = i.Id,
                 Name = i.Name
@@ -36,7 +36,7 @@ public class ItemService : IItemService
 
         public async Task<ProductDetails> GetItemByIdAsync(int itemId)
         {
-            ItemEntity item = await _context.Items.Include(i => i.ProductType).FirstOrDefaultAsync(i => i.Id == itemId);
+            ProductEntity item = await _context.Products.Include(i => i.ProductType).FirstOrDefaultAsync(i => i.Id == itemId);
             if (item is null)
             {
                 return null;
@@ -58,7 +58,7 @@ public class ItemService : IItemService
 
         public async Task<bool> EditItemAsync(ProductEdit request)
         {
-            var itemEntity = await _context.Items.FindAsync(request.Id);
+            var itemEntity = await _context.Products.FindAsync(request.Id);
             
             if (itemEntity == null)
                 return false;
@@ -76,14 +76,14 @@ public class ItemService : IItemService
         public async Task<bool> DeleteItemAsync(int itemId)
         {
             // Find the note by the given Id
-            var itemEntity = await _context.Items.FindAsync(itemId);
+            var itemEntity = await _context.Products.FindAsync(itemId);
 
             // Validate the note exists and is owned by the user
             if (itemEntity == null)
                 return false;
 
             // Remove the note from the DbContext and assert that the one change was saved
-            _context.Items.Remove(itemEntity);
+            _context.Products.Remove(itemEntity);
             return await _context.SaveChangesAsync() == 1;
 
         }
