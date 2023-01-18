@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public class TransactionEntity
     {
-         [Key]
+        [Key]
         public int Id { get; set; }
 
         [Required]
