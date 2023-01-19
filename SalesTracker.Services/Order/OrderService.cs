@@ -33,7 +33,8 @@ public class OrderService : IOrderService
 
             orderDetails.Id=order.Id; 
             orderDetails.Location=order.location;
-            orderDetails.Products=order.Products.Select(i=>new ProductListItem{
+            orderDetails.Products=order.Products.Select(i => new ProductListItem
+            {
                 Id = i.Id,
                 Name = i.Name,
                 Cost = i.Cost
@@ -48,7 +49,8 @@ public class OrderService : IOrderService
         {
             Id = s.Id,
             location = s.location,
-            Products = s.Products.Select(i=>new ProductListItem{
+            Products = s.Products.Select(i => new ProductListItem
+            {
                 Id = i.Id,
                 Name = i.Name,
                 Cost = i.Cost
@@ -76,7 +78,7 @@ public class OrderService : IOrderService
         };
     }
 
-     public async Task<bool> DeleteOrder(int id)
+    public async Task<bool> DeleteOrder(int id)
     {
         var order = await _context.Orders.FindAsync(id);
         if (order is null)
@@ -95,24 +97,24 @@ public class OrderService : IOrderService
             
             order.location=updateorder.location;
             order.Products.Clear();
-           
-                  foreach (var things in updateorder.ProductIds)
+
+                foreach (var things in updateorder.ProductIds)
             {
-                var item = _context.Products.SingleOrDefault(i => i.Id == things);
-                if(item == null)
+                var product = _context.Products.SingleOrDefault(i => i.Id == things);
+                if(product == null)
                 return null;
 
-                order.Products.Add(item);
+                order.Products.Add(product);
             }
             await _context.SaveChangesAsync();
 
-             return new OrderDetails{
+            return new OrderDetails{
             Id = order.Id,
             Location = order.location, 
             Products = order.Products.Select(i=>new ProductListItem{
                 Id = i.Id,
                 Name = i.Name,
-                 Cost = i.Cost
+                Cost = i.Cost
             }).ToList()
         };        
         }
