@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 
-public class ItemService : IItemService
+public class ProductService : IProductService
     {
         private readonly AppDbContext _context;
-        public ItemService(AppDbContext context)
+        public ProductService(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<bool> CreateItemAsync(ProductCreate model)
+        public async Task<bool> CreateProductAsync(ProductCreate model)
         {
             var entity = new ProductEntity
             {
@@ -25,65 +25,66 @@ public class ItemService : IItemService
             return numberOfChanges == 1;
         }
 
-        public async Task<IEnumerable<ProductListItem>> GetAllItemsAsync()
+        public async Task<IEnumerable<ProductListItem>> GetAllProductsAsync()
         {
             return await _context.Products.Select(i => new ProductListItem
             {
                 Id = i.Id,
-                Name = i.Name
+                Name = i.Name,
+                Cost = i.Cost
             }).ToListAsync();
         }
 
-        public async Task<ProductDetails> GetItemByIdAsync(int itemId)
+        public async Task<ProductDetails> GetProductByIdAsync(int productId)
         {
-            ProductEntity item = await _context.Products.Include(i => i.ProductType).FirstOrDefaultAsync(i => i.Id == itemId);
-            if (item is null)
+            ProductEntity product = await _context.Products.Include(i => i.ProductType).FirstOrDefaultAsync(i => i.Id == productId);
+            if (product is null)
             {
                 return null;
             }
             // manuly mapping a GameEntity Object to a GameDetails Object
             return new ProductDetails
             {
-                Id = item.Id,
-                Name = item.Name,
-                Description = item.Description,
-                Cost = item.Cost,
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Cost = product.Cost,
                 ProductType = new ProductTypeListItem
                 {
-                    Id = item.ProductType.Id,
-                    Name = item.ProductType.Name
+                    Id = product.ProductType.Id,
+                    Name = product.ProductType.Name
                 }
             };
         }
 
-        public async Task<bool> EditItemAsync(ProductEdit request)
+        public async Task<bool> EditProductAsync(ProductEdit request)
         {
-            var itemEntity = await _context.Products.FindAsync(request.Id);
+            var productEntity = await _context.Products.FindAsync(request.Id);
             
-            if (itemEntity == null)
+            if (productEntity == null)
                 return false;
 
-            itemEntity.Name = request.Name;
-            itemEntity.Description = request.Description;
-            itemEntity.Cost = request.Cost;
-            itemEntity.ProductTypeId = request.ProductTypeId;
+            productEntity.Name = request.Name;
+            productEntity.Description = request.Description;
+            productEntity.Cost = request.Cost;
+            productEntity.ProductTypeId = request.ProductTypeId;
 
             var numberOfChanges = await _context.SaveChangesAsync();
 
             return numberOfChanges == 1;
         }
 
-        public async Task<bool> DeleteItemAsync(int itemId)
+        public async Task<bool> DeleteProductAsync(int productId)
         {
             // Find the note by the given Id
-            var itemEntity = await _context.Products.FindAsync(itemId);
+            var productEntity = await _context.Products.FindAsync(productId);
 
             // Validate the note exists and is owned by the user
-            if (itemEntity == null)
+            if (productEntity == null)
                 return false;
 
             // Remove the note from the DbContext and assert that the one change was saved
-            _context.Products.Remove(itemEntity);
+            _context.Products.Remove(productEntity);
             return await _context.SaveChangesAsync() == 1;
 
         }
