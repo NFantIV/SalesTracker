@@ -23,9 +23,9 @@ namespace SalesTracker.WebAPI.Controllers
             return BadRequest(ModelState);
 
             if (await _productTypeService.CreateProductTypeAsync(request))
-            return Ok("Item created successfully.");
+            return Ok("Product created successfully.");
 
-            return BadRequest("Item could not be created.");
+            return BadRequest("Product could not be created.");
         }
 
         [HttpGet]

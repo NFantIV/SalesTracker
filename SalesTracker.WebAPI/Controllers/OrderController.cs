@@ -53,7 +53,7 @@ namespace SalesTracker.WebAPI.Controllers
         public async Task<IActionResult> EditOrder(int id, OrderEdit updateorder)
         {
 
-             var order = await _orderService.EditOrder(id, updateorder);
+            var order = await _orderService.EditOrder(id, updateorder);
             if (order is null)
                 return NotFound();
             else
