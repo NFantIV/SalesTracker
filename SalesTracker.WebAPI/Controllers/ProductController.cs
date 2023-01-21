@@ -8,16 +8,16 @@ namespace SalesTracker.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ItemController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        public ItemController(IProductService productService)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateItem([FromBody] ProductCreate request)
+        [HttpPost("CreateProduct")]
+        public async Task<IActionResult> CreateProduct([FromBody] ProductCreate request)
         {
             if (!ModelState.IsValid)
             return BadRequest(ModelState);
@@ -28,15 +28,15 @@ namespace SalesTracker.WebAPI.Controllers
             return BadRequest("Product could not be created.");
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllItems()
+        [HttpGet("GetAllProducts")]
+        public async Task<IActionResult> GetAllProducts()
         {
             var products = await _productService.GetAllProductsAsync();
             return Ok(products);
         }
 
-        [HttpGet, Route("{id}")]
-        public async Task<IActionResult> GetItemById(int id)
+        [HttpGet, Route("GetProductBy{id}")]
+        public async Task<IActionResult> GetProductById(int id)
         {
             var product = await _productService.GetProductByIdAsync(id);
             if (product is null)
@@ -45,7 +45,7 @@ namespace SalesTracker.WebAPI.Controllers
                 return Ok(product);
         }
         
-        [HttpPut]
+        [HttpPut("UpdateProductBy{id}")]
         public async Task<IActionResult> EditProductById([FromBody] ProductEdit request)
         {
             if (!ModelState.IsValid)
@@ -57,7 +57,7 @@ namespace SalesTracker.WebAPI.Controllers
         }
 
         [HttpDelete("{productId:int}")]
-        public async Task<IActionResult> ProductGame([FromRoute] int productId)
+        public async Task<IActionResult> ProductDelete([FromRoute] int productId)
         {
             return await _productService.DeleteProductAsync(productId)
                 ? Ok($"Note {productId} was deleted successfully.")
