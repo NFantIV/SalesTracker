@@ -15,11 +15,11 @@ The following assumes you are on Windows:
 
 First, clone the repository. Enter "dotnet run --project .\SalesTracker.WebAPI\" and run it from the terminal while in the root directory. Because this is currently the completed backend only, click the link to the "localhost" shown after running the command, add "/swagger" to the url, and press enter. You should now be able to test the backend functionality and see all endpoints working.
 
-##Known Issues
+## Known Issues
  - No front end
  - Amounts of products sold in some transactions are not being accurately represented
 
-##Technologies and Features
+## Technologies and Features
  - C#
  - ASP.Net Core 7
  - MS SQL
