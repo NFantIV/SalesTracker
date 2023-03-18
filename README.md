@@ -23,4 +23,3 @@ First, clone the repository. Enter "dotnet run --project .\SalesTracker.WebAPI\"
  - C#
  - ASP.Net Core 7
  - MS SQL
- - Docker
